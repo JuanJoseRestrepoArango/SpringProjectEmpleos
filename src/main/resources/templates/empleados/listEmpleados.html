@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>BD Scott | Listado de Empleados</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+  
+    <header th:insert="fragments/menu :: menu-principal"></header>  
+
+    <main role="main">     
+      <hr>
+      <div class="container mt-5 pt-5"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Empleados</strong></h4>              
+          <div class="card-body">
+            <a class="btn btn-primary" th:href="@{/empleados/create}" title="Crear nuevo Empleado" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nuevo</a>            
+            <hr>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Nombre</th>                  
+                    <th scope="col">Trabajo</th>
+                    <th scope="col">MGR</th>
+                    <th scope="col">Fecha Contratacion</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Comision</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="empleado : ${empleados}">
+                  <td th:text="${empleado.empno}"></td>
+                  <td th:text="${empleado.ename}"></td>                  
+                  <td th:text="${empleado.job}"></td>
+                  <td th:text="${empleado.mgr}"></td>
+                  <td th:text="${empleado.hiredate}"></td>
+                  <td th:text="${empleado.sal}"></td>
+                  <td th:text="${empleado.comm != null ? empleado.comm : 'N/A'}"></td>
+                  <td th:text="${empleado.deptno.dname}"></td>
+                  <td>
+                    <a th:href="@{/empleados/edit/{empno} (empno=${empleado.empno}) }" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/empleados/delete/{empno} (empno=${empleado.empno}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                  </td>
+                </tr>                                              
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+  </body>
+</html>

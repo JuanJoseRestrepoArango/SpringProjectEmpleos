@@ -25,7 +25,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Listado de Empleados</strong></h4>              
           <div class="card-body">
-            <a class="btn btn-primary" th:href="@{/empleados/create}" title="Crear nuevo Empleado" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nuevo</a>            
+            <a class="btn btn-primary bg-black border-black" th:href="@{/empleados/create}" title="Crear nuevo Empleado" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nuevo</a>            
             <hr>
             <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
             <table class="table table-hover">

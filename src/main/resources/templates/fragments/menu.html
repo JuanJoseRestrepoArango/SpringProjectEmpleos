@@ -1,20 +1,48 @@
-<nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" th:href="@{/}">BD Scott App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav th:fragment="menu-principal" class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">BDScott App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Navegacion</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column ">
+        <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}" th:classappend="${uri == '/'}  ? ' active'">Home</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+            <a class="nav-link"  th:classappend="${uri.startsWith('/empleados/index')} ? ' active'" th:href="@{/empleados/index}">Empleados</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+            <a class="nav-link" th:classappend="${uri.startsWith('/departamentos/index')} ? ' active'" th:href="@{/departamentos/index}">Departamentos</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+            <a class="nav-link" th:classappend="${uri.startsWith('/usuarios/index')} ? ' active'" th:href="@{/usuarios/index}" >Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:classappend="${uri.startsWith('/about')} ? ' active'" th:href="@{/about}">Acerca</a>
+          </li>
+        </ul>
+        <div class="mt-auto w-100"> 
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/departamentos/index}">Departamentos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/empleados/index}">Empleados</a>
-      </li>
-        
-    </ul>  
-    <!-- <a class="btn btn-primary" href="#">Ingresar</a>&nbsp;
-    <a class="btn btn-primary" href="#">Registrarse</a> -->
+          <div sec:authorize="isAnonymous()" class="d-flex flex-row justify-content-between align-items-center w-100 border-top border-light pt-3">
+             <a class="nav-link " th:href="@{/index}">Ingresar</a>&nbsp;  
+            <a class="nav-link" th:href="@{/signup}">Registrarse</a>
+          </div> 
+          <div sec:authorize="isAuthenticated()" class="border-top border-light pt-3">
+            <span class="text-light">Bienvenido</span>&nbsp;<span class="text-light" sec:authentication="name"></span>&nbsp;  
+            <a class="nav-link " th:href="@{/logout}">Salir</a>&nbsp;  
+          </div> 
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </nav>
+
+

@@ -2,41 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<div th:fragment="tabl-empleados">
-	<h1 class="text-primary">Lista de Empleados</h1>
+<div th:fragment="tabl-empleados" class="container">
+	<div class="card">
+		<h4 class="card-header"><strong>Listado de Empleados</strong></h4>  
+		<div class="card-body">
 
-	 <table class="table table-striped table-bordered table-hover">
-	  <tr>
-	  	<th>Numero</th>
-	    <th>Nombre</th>
-	    <th>Puesto</th>
-	    <th>MGR</th>
-	    <th>Fecha de Contratacion</th>
-	    <th>Salario</th>
-	    <th>Comision</th>	
-	    <th>Departamento</th>  
-        <th scope="col">Operaciones</th>
-	  </tr>
-	  
-	  <tr th:each="emp : ${empleados} ">
-	    <td th:text="${emp.empno}"></td>
-        <td th:text="${emp.ename}"></td>
-	    <td th:text="${emp.job}"></td>
-	    <td th:text="${emp.mgr}"></td>
-	    <td th:text="${emp.hiredate}"></td>
-	    <td th:text="${emp.sal}"></td>
-	    <td th:text="${emp.comm}"></td>
-	    <td th:text="${emp.deptno.dname}"></td>
-	    
-	    
-	    <td>
-	    	<a th:href="@{/empleados/view/{empno} (empno=${emp.empno})  }" class="btn btn-success">Detalle</a>
-	    </td>
-	    
-	    
-	    	  
-	  </tr>
-	 
-	</table> 
+			<div class="table-responsive rounded-2 overflow-hidden shadow-lg">
+				<table class="table table-striped table-bordered table-hover mb-0">
+					<tr>
+					<th>Numero</th>
+					<th>Nombre</th>
+					<th>Puesto</th>
+					<th>MGR</th>
+					<th>Fecha de Contratacion</th>
+					<th>Salario</th>
+					<th>Comision</th>
+					<th>Departamento</th>
+					<th>Operaciones</th>
+					</tr>
+					<tr th:each="emp : ${empleados}">
+					<td class="text-center" th:text="${emp.empno}"></td>
+					<td class="text-center" th:text="${emp.ename}"></td>
+					<td class="text-center" th:text="${emp.job}"></td>
+					<td class="text-center" th:text="${emp.mgr}"></td>
+					<td class="text-center" th:text="${emp.hiredate}"></td>
+					<td class="text-center" th:text="${emp.sal}"></td>
+					<td class="text-center" th:text="${emp.comm}"></td>
+					<td class="text-center" th:text="${emp.deptno.dname}"></td>
+					<td class="d-flex justify-content-center">
+						<a th:href="@{/empleados/view/{empno}(empno=${emp.empno})}" class="btn btn-success">Detalle</a>
+					</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+
 
 </div>

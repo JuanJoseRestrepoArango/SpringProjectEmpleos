@@ -11,21 +11,34 @@
 
     <header th:insert="fragments/menu :: menu-principal"></header>
 
-    <main role="main" class="container mt-5 pt-5">
+    <main role="main" class="container">
         <div class="jumbotron">
-        <div class="container">
-          <h3>Encuentra el empleado que andas buscando.</h3>
-          Puedes buscar por nombre.
-          <form class="form-inline">
-            <input type="text" class="form-control mb-3" id="exampleFormControlInput1" name="nombre" placeholder="Escriba una búsqueda">&nbsp;
-            <select class="form-control" name="deptno">
-              <option value="">Seleccione un departamento</option>        
-              <option th:each="deptno : ${departamentos}" 
-		                      th:value="${deptno.deptno}" 
-		                      th:text="${deptno.dname}"></option>                     
-            </select>
-            <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-          </form>
+        <div class="container mt-2 pt-2">
+          <h3>Encuentra información sobre empleados de BD Scott</h3>
+
+          <div class="card">
+            <h3 class="card-header">
+              <strong>Filtros</strong>
+            </h3>
+
+            <div class="card-body">
+              <h4 class="text-muted">Puedes buscar por nombre o departamento.</h4>
+              <form class="form-inline ">
+                <div class="d-flex flex-row align-items-center gap-2 justify-content-between">
+                  <input type="text" class="form-control w-50 " id="exampleFormControlInput1" name="nombre" placeholder="Escriba el nombre de el Empleado">&nbsp;
+                  <select class="form-select w-auto" name="deptno">
+                    <option value="">Seleccione un departamento</option>        
+                    <option th:each="deptno : ${departamentos}" 
+                                th:value="${deptno.deptno}" 
+                                th:text="${deptno.dname}"></option>                     
+                  </select>
+                  <button type="submit" class="btn btn-primary bg-black border-black">Buscar</button>
+                </div>
+            </form>
+            </div>
+          </div>
+          
+          
         </div>
       </div>
     </main>

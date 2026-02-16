@@ -88,14 +88,14 @@ public class HomeController {
 		List<Emp> lista=serviceEmpleados.buscarTodas();
 		model.addAttribute("empleados",lista); 
 		
-		return "tabla";
+		return "tabla"; 
 	}
 	@GetMapping("/signup") 
 	public String registrarse(Usuario usuario) {
 		return "formRegistro";
-	}
-	
-	
+	}  
+
+     
 	@PostMapping("/signup")
 	public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
 		
